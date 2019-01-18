@@ -1,0 +1,27 @@
+{
+  "name": "portfolio-nicolas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "next build",
+    "start": " cross-env NODE_ENV=production node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.18.0",
+    "cross-env": "^5.2.0",
+    "express": "^4.16.4",
+    "next": "^7.0.2",
+    "next-routes": "^1.4.2",
+    "node-sass": "^4.11.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "save": "^2.3.3"
+  }
+}
