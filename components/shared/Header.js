@@ -22,10 +22,8 @@ class Header extends React.Component{
             
             // react.fragments es como un div
             <React.Fragment>
-                {/* <p>{title}</p>
-                {this.props.children} */}
-                <p className='customClass' >estilo de elemento p</p>
-                <p className='customClassFromFile' >estilo de elemento p</p>
+                
+              
                 <Link href="/">
                     <a style={{'fontSize':'20px'}}> Home </a>
                 </Link>
