@@ -4,6 +4,7 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import {withRouter} from 'next/router'
 import axios from 'axios'
 import { userInfo } from 'os';
+import BasePage from '../components/basepage'
 // para mostrar el contenido especifico del post con un querie para paginas dinamicas
 // dar un post en especifico y mostrarlo
 class PortfolioDetails extends React.Component{
@@ -25,13 +26,16 @@ class PortfolioDetails extends React.Component{
         // debugger;
         // console.log(this.props)
         const {userData}=this.props;
-        return(
-            <BaseLayout>
-                <h2>{userData.title} </h2>
-                <p>{userData.body}</p>
-                
-                <h1> ID:{userData.id} </h1>            
+        return(            
+            <BaseLayout {...this.props.auth} >
+                <BasePage>
+                    <h2>{userData.title} </h2>
+                    <p>{userData.body}</p>
+                    
+                    <h1> ID:{userData.id} </h1>       
+                </BasePage>     
             </BaseLayout>
+           
             
         )
     }
