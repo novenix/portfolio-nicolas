@@ -1,4 +1,5 @@
-// este se usa para importar todos los css en un solo lugar y ponerlos en la app
+// este se usa para importar todos los css o lo que se necesite
+//  en un solo lugar y ponerlos en la app (como la autenticacion)
 import React from 'react'
 import App, { Container } from 'next/app'
 import auth0 from '../services/auth0'

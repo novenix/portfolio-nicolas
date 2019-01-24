@@ -1,7 +1,7 @@
-
+@import './shared/colors';
 
 // HEADER
-.port-navbar.port-default {
+.port-navbar.port-nav-base {
   width: 100%;
   z-index: 15;
   padding: 40px;
@@ -37,4 +37,8 @@
       }
     }
   }
+}
+.port-navbar.port-nav-base.port-nav-default {
+  padding: 30px;
+  background-color: $secondary !important;
 }

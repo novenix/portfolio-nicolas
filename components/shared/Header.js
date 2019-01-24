@@ -51,10 +51,10 @@ export default class Header extends React.Component {
     });
   }
   render() {
-    const {isAuthenticated,user}=this.props
+    const {isAuthenticated,user,className}=this.props
     return (
       <div>
-        <Navbar className="port-navbar port-default" color='transparent' dark expand="md">
+        <Navbar className={`port-navbar port-nav-base ${className}`} color='transparent' dark expand="md">
           <NavbarBrand className="port-navbar-brand" href="/">Nicolas Torres Páez</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
@@ -90,7 +90,7 @@ export default class Header extends React.Component {
               }
               {isAuthenticated &&
               <NavItem className="port-navbar-item" >
-                <span className="nav-link port-navbar-link" >{user.name}</span>
+                <span className="nav-link port-navbar-link clickable" >{user.name}</span>
               </NavItem>
               }
             </Nav>

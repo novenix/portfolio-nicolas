@@ -3,7 +3,9 @@
 @import './index';
 // components
 @import './header';
-
+// colores
+@import './shared/colors';
+@import './portfolios';
 
 
 html,body{
@@ -21,11 +23,25 @@ html,body{
 .absolute {
     position: absolute;
   }
-  .base-page {
-      padding-top: 150px; 
-      color:white;
-  }
+  
 .clickable{
     cursor: pointer;
 }
-  
+.base-page {
+    padding-top: 150px;
+    color: black;
+    background-color:#ecedee; 
+    min-height:100vh;
+    .page-header {
+      .page-header-title {
+        font-weight: 700;
+        color: black;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+    }
+  }
+  .error{
+      font-weight: 700;
+      color:red;
+  }

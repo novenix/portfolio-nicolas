@@ -5,6 +5,8 @@ import {withRouter} from 'next/router'
 import axios from 'axios'
 import { userInfo } from 'os';
 import BasePage from '../components/basepage'
+// componente HOC(hig order component) para saber si esta logueado o no
+import withAuth from '../components/HOC/withAuth'
 // para mostrar el contenido especifico del post con un querie para paginas dinamicas
 // dar un post en especifico y mostrarlo
 class PortfolioDetails extends React.Component{
@@ -40,4 +42,5 @@ class PortfolioDetails extends React.Component{
         )
     }
 }
-export default withRouter( PortfolioDetails);
+export default withAuth()( withRouter( PortfolioDetails));
+// http://localhost:3000/portfolio-detail/1
