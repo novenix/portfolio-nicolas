@@ -3,17 +3,24 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Button, FormGroup, Label } from 'reactstrap';
 import PortInput from '../form/portInput';
+import PortDate from '../form/PortDate'
 
 const validateInputs=(values)=>{
     let errors = {};
     // debugger;
     
     Object.entries(values).forEach(([key,value])=>{
-        if(!values[key]){
+        // if(!values[key] && (values[key]==="startDate" || values[key]==='endDate')){
+          if (!values[key] && key !== 'endDate') {
             errors[key]=`El campo ${key} es requerido`
         }
         
     })
+    const startDate=values.startDate;
+    const endDate=values.endDate;
+    if(startDate&&endDate&&endDate.isBefore(startDate)){
+      errors.endDate='la fecha final no puede estar antes de la inicial';
+    }
 
     return errors;
 }
@@ -35,6 +42,7 @@ const PortfolioCreateForm = () => (
       validate={validateInputs}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
+          // debugger;
           alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 400);
@@ -70,17 +78,15 @@ const PortfolioCreateForm = () => (
 
           
 
-          <FormGroup>
-          <Label>Fecha de inicio</Label>
-          <Field className='form-control' type="text" name="startDate" />
-          <ErrorMessage name="startDate" component="div" />
-          </FormGroup>
+            <Field  
+                    name="startDate"
+                    label='Start Date'
+                    component={PortDate}/>
 
-          <FormGroup>
-          <Label>Fecha final</Label>
-          <Field className='form-control' type="text" name="endDate" />
-          <ErrorMessage name="endDate" component="div" />
-          </FormGroup>
+            <Field  
+                    name="endDate"
+                    label='End Date'
+                    component={PortDate}/>
 
           <button type="submit" disabled={isSubmitting}>
             Create
@@ -92,6 +98,7 @@ const PortfolioCreateForm = () => (
 );
 
 export default PortfolioCreateForm;
+
 
 
 // import React from 'react'
