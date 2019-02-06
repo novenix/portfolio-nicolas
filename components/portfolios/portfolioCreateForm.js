@@ -86,6 +86,7 @@ const PortfolioCreateForm = () => (
             <Field  
                     name="endDate"
                     label='End Date'
+                    canBeDisabled={true}
                     component={PortDate}/>
 
           <button type="submit" disabled={isSubmitting}>

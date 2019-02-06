@@ -7,7 +7,8 @@ export default class PortDate extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            dateValue: new Date()
+            dateValue: new Date(),
+            isHidden:false
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -17,42 +18,65 @@ export default class PortDate extends React.Component {
         this.setState({isBrowserLoaded: true})
         
     }
- 
+    setFieldvalueAndTouched(date,touched){
+        const{setFieldValue,setFieldTouched}=this.props.form;
+        const{name}=this.props.field;    
+
+        
+        setFieldValue(name,date,true);
+        setFieldTouched(name,touched,true);    
+    }
     handleChange(date) {
         
-        const{setFieldValue,setFieldTouched}=this.props.form;
-        const{name}=this.props.field;
-        // const formattedDate=date.format()
+        
+        
         this.setState({
             dateValue: date
         });
-        setFieldValue(name,date,true);
-        setFieldTouched(name,true,true);
+       this.setFieldvalueAndTouched(date,true)
     }
- 
+    toggleDate(date){
+      
+        this.setState({
+            isHidden:!this.state.isHidden
+        })
+        this.setFieldvalueAndTouched(date,true)
+    }
     render() {
-        const {label,field,form:{touched,errors}}=this.props;
-        const isLoaded = this.state;
+        const {label,canBeDisabled,field,form:{touched,errors}}=this.props;
+        // const label=this.props;
+        const isLoaded = this.state.isBrowserLoaded;
+        const {isHidden,dateValue}=this.state;
         // const {touched,errors}=this.props.form;
-
+       
         return (
+            
             <React.Fragment>
-                {}
-                { this.state.isBrowserLoaded&&<Label>{label}</Label> && <div className="input-group">
+                {<Label>{label}</Label>}
+                { isLoaded && <div className="input-group">
+                    { !isHidden&&               
                     <DatePicker
-                        selected={this.state.dateValue}
+                        selected={dateValue}
                         onChange={this.handleChange}
                         peekNextMonth
                         showMonthDropdown
                         showYearDropdown
                         dropdownMode="select"
                         maxDate={this.state.dateValue}
-                    />
+                    />}
+                    { canBeDisabled&& !isHidden&&<Button onClick={()=>{this.toggleDate()}} >Aún trabaja aquí...</Button>}
+                    {canBeDisabled&&isHidden&&
+                        <React.Fragment>
+                            <span> Aun trabajando aqui... </span>
+                            <Button onClick={()=>{this.toggleDate(dateValue)}} > Poner fecha Final </Button>
+                        </React.Fragment>
+                    }
                     {touched[field.name] &&
                     errors[field.name] && <div className="error">{errors[field.name]}</div>}
                 </div>
                 
                 }
+                
                 
             </React.Fragment>
         );
