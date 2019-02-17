@@ -12,7 +12,7 @@
 html,body{
     height:100%;
     width:100%;
-    font-family: "TitilliumWeb"  !important;
+    font-family: 'TitilliumWeb'  !important;
 }
 .self-typed{
     font-size: 31px;
@@ -29,7 +29,7 @@ html,body{
     cursor: pointer;
 }
 .base-page {
-    padding-top: 150px;
+    padding: 150px 0 50px 0;
     color: black;
     background-color:#ecedee; 
     min-height:100vh;
