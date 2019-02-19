@@ -19,6 +19,9 @@ const config=require("./config");
 // model de book
 const Book=require('./models/book');
 
+const bookRoutes=require('./routes/book');
+const portfolioRoutes=require('./routes/portfolio')
+
 const secretData=[
     {
         title:'secretData 1',
@@ -40,53 +43,10 @@ app.prepare()
   const server = express();
   // midlleware body-parser;
   server.use(bodyParser.json());
-  //enpoint para book
-  server.post('/api/v1/books',(req,res)=>{
-    const bookData=req.body;
-    console.log(bookData)
-    const book=new Book(bookData);
-
-    book.save((err,createdBook)=>{
-      if(err){
-        return res.status(422).send(err);
-
-      }
-      return res.json(createdBook);
-    })
-  })
-  //endopoint 
-  server.get('/api/v1/books',(req,res)=>{
-    Book.find({},(err,allBooks)=>{
-      if (err){
-        return res.status(422).send(err);
-      }
-      return res.json(allBooks);
-
-    })
-    
-    
-  })
-  //endpoint actualizar libro
-  server.patch('/api/v1/books/:id',(req,res)=>{
-    console.log('entra')
-    const bookId=req.params.id;
-    const bookData=req.body;
-    Book.findById(bookId,(err,foundBook)=>{
-      if (err){
-        return res.status(422).send(err);
-      }
-      foundBook.set(bookData);
-      foundBook.save((err,savedBook)=>{
-        if (err){
-          return res.status(422).send(err);
-        }
-        return res.json(savedBook);
-      })
-    });
-  })
-
-
-
+  // uso de la ruta de books sin validacion
+  server.use('/api/v1/books',bookRoutes);
+  // uso de ruta de portfolio con autorizacion de sit owner(dentro de routes la autorizacion)
+  server.use('/api/v1/portfolios', portfolioRoutes)
 
 //   endpoint:ruta, middleware, route handler
     server.get('/api/v1/secret',authService.checkJWT,(req,res)=>{
