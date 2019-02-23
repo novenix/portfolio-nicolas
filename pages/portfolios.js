@@ -10,52 +10,58 @@ import BasePage from '../components/basepage'
 import withAuth from '../components/HOC/withAuth'
 // reactstrap
 import{Col,Row,Card,CardBody,CardHeader,CardText,CardTitle} from 'reactstrap'
+// accion de buscar en api rest portfolios
+import {getPortfolios} from '../actions/index'
 class Portfolios extends React.Component{
     static async getInitialProps(){
-        let posts=[];
+        
+        
+        let portfolios=[];
         try{
-            const response=await axios.get('https://jsonplaceholder.typicode.com/posts')
-            posts=response.data
+            portfolios=await getPortfolios();
+            
+            
         }
         catch(err){
-            console.log(err)
+            console.log(err);
         }
-        // para mostrar solo 10 posts
-        return{posts:posts.splice(0,10)}
+
+        return {portfolios}
     }
-    renderPosts(posts){
-        // debugger;
-        return posts.map((post,index)=>{
+    
+    renderPortfolios(portfolios){
+        
+        return portfolios.map((portfolio,index)=>{
             return(
-                
-                // para next-routes(libreria para enrutar dinamicamente (portfolio-detail))
-                <Col md="4">
-                    <React.Fragment key={index}>
+                <Col md="4" key={index} >
+                    <React.Fragment >
                         <span>
-                            <Card className="portfolio-card">
-                                <CardHeader className="portfolio-card-header">Some Position {index}</CardHeader>
+                        <Card className="portfolio-card">
+                                <CardHeader className="portfolio-card-header">Compañia: {portfolio.company}</CardHeader>
                                 <CardBody>
-                                    <p className="portfolio-card-city"> Some Location {index} </p>
-                                    <CardTitle className="portfolio-card-title">Some Company {index}</CardTitle>
-                                    <CardText className="portfolio-card-text">Some Description {index}</CardText>
+                                    <p className="portfolio-card-city"> Ubicación: {portfolio.location} </p>
+                                    <CardTitle className="portfolio-card-title">Posición: {portfolio.position}</CardTitle>
+                                    <CardText className="portfolio-card-text">Descripción {portfolio.description}</CardText>
                                 <div className="readMore"> </div>
                                 </CardBody>
                             </Card>
                         </span>
                     </React.Fragment>
                 </Col>
-
             )
         })
     }
     render(){
         // debugger;
-        const {posts}=this.props;
+        
+        const {portfolios}=this.props;
+        
         return(
             <BaseLayout {...this.props.auth} >
                 <BasePage className='portfolio-page' title="portfolios" >
                     <Row>
-                        {this.renderPosts(posts)}
+                        {/* {this.renderPosts(posts)} */}
+                        {this.renderPortfolios(portfolios)}
                     </Row>
                 </BasePage>
             </BaseLayout>
@@ -64,4 +70,4 @@ class Portfolios extends React.Component{
         )
     }
 }
-export default withAuth()( Portfolios);
+export default  Portfolios;

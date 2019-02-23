@@ -24,7 +24,35 @@ const savePortfolio=(req,res)=>{
         return res.json(createdPortfolio);
     })
 }
+const updatePortfolio=(req,res)=>{
+    const portfolioId=req.params.id;
+    const portfolioData=req.body;
+    Portfolio.findById(portfolioId,(err,foundPortfolio)=>{
+      if (err){
+        return res.status(422).send(err);
+      }
+      foundPortfolio.set(portfolioData);
+      foundPortfolio.save((err,savedPortfolio)=>{
+        if (err){
+          return res.status(422).send(err);
+        }
+        return res.json(foundPortfolio);
+      })
+    });
+}
+const deletePortfolio=(req,res)=>{
+    const portfolioId=req.params.id;
+    Portfolio.deleteOne({_id:portfolioId},(err,deletedPortfolio)=>{
+      if (err){
+        return res.status(422).send(err);
+      }
+      return res.json({status:'DELETED'});
+    })
+    
+}
 module.exports={
     getPortfolios,
     savePortfolio,
+    updatePortfolio,
+    deletePortfolio
 }
