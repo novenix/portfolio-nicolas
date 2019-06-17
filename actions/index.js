@@ -26,13 +26,14 @@ export const getSecretData=async (req)=>{
     return await axiosInstance.get(url,setAuthHeader(req)).then(response=>response.data);
 }
 // funcion para obtener todos los portafolios llamando a api get portfolios
-export const getPortfolios=async()=>{
+export const getPortfolios=async(req)=>{
     const url='/portfolios';
 
-    return await axiosInstance.get('/portfolios').then(response=>response.data);
+    return await axiosInstance.get(url).then(response=>response.data);
 }
-const createPortfolio=async(req)=>{
-    // return await axiosInstance.get(url,setAuthHeader(req)).then(response=>response.data);
+export const createPortfolio=async(portfolioData)=>{
+    //const url='/portfolios'
+     return await axiosInstance.post('/portfolios',portfolioData,setAuthHeader()).then(response=>response.data);
 }
 
 // export const getSecretDataServer=async (req)=>{

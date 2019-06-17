@@ -13,12 +13,12 @@ import{Col,Row,Card,CardBody,CardHeader,CardText,CardTitle} from 'reactstrap'
 // accion de buscar en api rest portfolios
 import {getPortfolios} from '../actions/index'
 class Portfolios extends React.Component{
-    static async getInitialProps(){
+    static async getInitialProps({req}){
         
         
         let portfolios=[];
         try{
-            portfolios=await getPortfolios();
+            portfolios=await getPortfolios(req);
             
             
         }

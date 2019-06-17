@@ -11,7 +11,7 @@ const getPortfolios=(req,res)=>{
 }
 const savePortfolio=(req,res)=>{
     const portfolioData=req.body;
-    
+    console.log(portfolioData);
     // obtener id de usuario que viene de auth 0
     const userId=req.user&&req.user.sub;
 
