@@ -11,7 +11,7 @@ const portfolioSchema=new Schema({
     location:setStringType(128),
     position:setStringType(256),
     description:setStringType(2048),
-    starDate:{type:Date,required:true},
+    startDate:{type:Date,required:true},
     endDate:Date
 });
 
