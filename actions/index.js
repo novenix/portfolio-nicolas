@@ -20,6 +20,17 @@ const setAuthHeader=(req)=>{
     return undefined;
     
 }
+const rejectPromise=(resError)=>{
+    //debugger
+    let error = {};
+    if(resError && resError.response && resError.response.data){
+        error=resError.response.data.message;
+    }
+    else{
+        error=resError;
+    }
+    return Promise.reject(error)
+}
 
 export const getSecretData=async (req)=>{
     const url='/secret';
@@ -31,11 +42,25 @@ export const getPortfolios=async(req)=>{
 
     return await axiosInstance.get(url).then(response=>response.data);
 }
+export const getPortfolioById = async(id)=>{
+    return await axiosInstance.get(`/portfolios/${id}`).then(response=>response.data)
+}
 export const createPortfolio=async(portfolioData)=>{
     //const url='/portfolios'
-     return await axiosInstance.post('/portfolios',portfolioData,setAuthHeader()).then(response=>response.data);
+     return await axiosInstance.post('/portfolios',portfolioData,setAuthHeader())
+     .then(response=>response.data)
+     .catch(error=> rejectPromise(error))
 }
-
+export const updatePortfolio=async(portfolioData)=>{
+    //const url='/portfolios'
+    //portfolioData._id=id en la base de datos
+     return await axiosInstance.patch(`/portfolios/${portfolioData._id}`,portfolioData,setAuthHeader())
+     .then(response=>response.data)
+     .catch(error=> rejectPromise(error))
+}
+export const deletePortfolio=(portfolioId)=>{
+    return axiosInstance.delete(`/portfolios/${portfolioId}`,setAuthHeader()).then(response=>response.data)
+}
 // export const getSecretDataServer=async (req)=>{
     
    

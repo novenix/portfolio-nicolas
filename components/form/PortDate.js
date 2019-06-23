@@ -2,15 +2,18 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FormGroup, Label, Button } from 'reactstrap';
+import moment from "moment";
  
 export default class PortDate extends React.Component {
     constructor(props) {
         super(props);
-        
+        console.log(props)
+        const dateValue=props.initialDate?new Date(props.initialDate):new Date();
+        const isHidden=props.initialDate?false:true;
         this.state = {
             maxDates:new Date(),
-            dateValue: new Date(),
-            isHidden:false
+            dateValue,
+            isHidden
         };
         this.handleChange = this.handleChange.bind(this);
     }

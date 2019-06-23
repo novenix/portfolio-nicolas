@@ -2,16 +2,33 @@
 Portfolio=require('../models/portfolio');
 
 const getPortfolios=(req,res)=>{
-    Portfolio.find({},(err,allPortfolios)=>{
-        if(err){
+
+    Portfolio.find({})
+        .sort({'startDate':1})
+        .exec((err,allPortfolios)=>{
+          if(err){
             return res.status(422).send(err)
         }
         return res.json(allPortfolios);
-    })
+        })
+    
+}
+const getPortfolioById =(req,res)=>{
+  const portfolioId = req.params.id;
+  // Portfolio.findById(portfolioId).select('-__v') permite no seleccionar '-__v' al consular en la base de datos
+  Portfolio.findById(portfolioId)
+            .select('-__v')
+            .exec((err,foundPortfolio)=>{
+              if (err){
+                return res.status(422).send(err);
+              }
+              return res.json(foundPortfolio);
+            })
+  
 }
 const savePortfolio=(req,res)=>{
     const portfolioData=req.body;
-    console.log(portfolioData);
+    //console.log(portfolioData);
     // obtener id de usuario que viene de auth 0
     const userId=req.user&&req.user.sub;
 
@@ -52,6 +69,7 @@ const deletePortfolio=(req,res)=>{
 }
 module.exports={
     getPortfolios,
+    getPortfolioById,
     savePortfolio,
     updatePortfolio,
     deletePortfolio

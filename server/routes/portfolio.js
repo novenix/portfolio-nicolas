@@ -9,6 +9,7 @@ router.get('',portfolioController.getPortfolios)
 router.post('', authService.checkJWT,
                 authService.checkRole('siteOwner'),
                 portfolioController.savePortfolio)
+router.get('/:id',portfolioController.getPortfolioById)
 router.patch('/:id',authService.checkJWT,
                 authService.checkRole('siteOwner'), 
                 portfolioController.updatePortfolio)

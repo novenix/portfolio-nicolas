@@ -4,14 +4,17 @@ import axios from 'axios'
 import BaseLayout from '../components/layouts/BaseLayout'
 // import Link from 'next/link'
 import {Link} from '../routes'
+import PorfolioCard from '../components/portfolios/portfolioCard'
+
 import BasePage from '../components/basepage'
 // componente HOC(hig order component) para saber si esta logueado o no
 // recibe rol y recibe la pag que recibe autenticacion
 import withAuth from '../components/HOC/withAuth'
 // reactstrap
-import{Col,Row,Card,CardBody,CardHeader,CardText,CardTitle} from 'reactstrap'
+import{Col,Row,Button} from 'reactstrap'
 // accion de buscar en api rest portfolios
-import {getPortfolios} from '../actions/index'
+import {getPortfolios,deletePortfolio} from '../actions/index'
+import {Router} from '../routes'
 class Portfolios extends React.Component{
     static async getInitialProps({req}){
         
@@ -28,25 +31,42 @@ class Portfolios extends React.Component{
 
         return {portfolios}
     }
-    
+    navigateToEdit(portfolioId,event){
+        event.stopPropagation();
+        Router.pushRoute(`/portfolios/${portfolioId}/edit`)
+    }
+    displayDeleteWarning(portfiolioId,event){
+        event.stopPropagation();
+        const isConfrirm=confirm("¿esta seguro que desea borrar portafolio?")
+        
+        if(isConfrirm){
+            //borrar portafolio
+            this.deletePort(portfiolioId);
+        }
+    }
+    deletePort(portfiolioId){
+        deletePortfolio(portfiolioId)
+            .then(()=>{
+                //que hacer luego?
+                Router.pushRoute('/portfolios')
+            })
+            .catch(err=>console.error(err))
+    }
+
     renderPortfolios(portfolios){
+        const {isAuthenticated,isSiteOwner}=this.props.auth;
         
         return portfolios.map((portfolio,index)=>{
             return(
                 <Col md="4" key={index} >
-                    <React.Fragment >
-                        <span>
-                        <Card className="portfolio-card">
-                                <CardHeader className="portfolio-card-header">Compañia: {portfolio.company}</CardHeader>
-                                <CardBody>
-                                    <p className="portfolio-card-city"> Ubicación: {portfolio.location} </p>
-                                    <CardTitle className="portfolio-card-title">Posición: {portfolio.position}</CardTitle>
-                                    <CardText className="portfolio-card-text">Descripción {portfolio.description}</CardText>
-                                <div className="readMore"> </div>
-                                </CardBody>
-                            </Card>
-                        </span>
-                    </React.Fragment>
+                    <PorfolioCard portfolio={portfolio} >
+                    {isAuthenticated&&isSiteOwner&&
+                            <React.Fragment>
+                                <Button onClick={(event)=>this.navigateToEdit(portfolio._id,event)}  outline color="warning">Editar</Button>
+                                <Button onClick={(event)=>this.displayDeleteWarning(portfolio._id,event)} outline color="danger">Borrar</Button>
+                            </React.Fragment>
+                        }  
+                    </PorfolioCard>
                 </Col>
             )
         })
@@ -55,10 +75,13 @@ class Portfolios extends React.Component{
         // debugger;
         
         const {portfolios}=this.props;
-        
+        const {isAuthenticated,isSiteOwner}=this.props.auth;
         return(
             <BaseLayout {...this.props.auth} >
                 <BasePage className='portfolio-page' title="portfolios" >
+                    { isAuthenticated&&isSiteOwner&&
+                        <Button onClick={()=>Router.pushRoute('/portfolioNew')} outline color="success" className="create-port-butt" >Crear Portafolio</Button>
+                    }
                     <Row>
                         {/* {this.renderPosts(posts)} */}
                         {this.renderPortfolios(portfolios)}

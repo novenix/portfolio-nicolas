@@ -1,88 +1,83 @@
 // Render Prop
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Button } from 'reactstrap';
+import { Button,Alert} from 'reactstrap';
 import PortInput from '../form/portInput';
 import PortDate from '../form/PortDate'
 
 const validateInputs=(values)=>{
     let errors = {};
-    // debugger;
+     //debugger;
     
     Object.entries(values).forEach(([key,value])=>{
+      //debugger;
         // if(!values[key] && (values[key]==="startDate" || values[key]==='endDate')){
-          if (!values[key] && key !== 'endDate') {
+          if (!values[key]  && key !== 'endDate') {
             errors[key]=`El campo ${key} es requerido`
         }
         
     })
     const startDate=values.startDate;
     const endDate=values.endDate;
-    if(startDate&&endDate&&endDate.isBefore(startDate)){
+    //if(startDate&&endDate&&endDate.isBefore(startDate)){
+    if(startDate && endDate && endDate < startDate){
       errors.endDate='la fecha final no puede estar antes de la inicial';
     }
 
     return errors;
 }
-const INITIAL_VALUES={
-    Título:'',
-    Compañía:'',
-    Ubicación:'',
-    Posición:'',
-    Descripción:'',
-    startDate:'',
-    endDate:''
-}
-const PortfolioCreateForm = (props) => (
+
+const PortfolioCreateForm = ({initialValues,onSubmit,error}) => (
+  
   <div>
     
     
     <Formik
-      initialValues={INITIAL_VALUES}
+      initialValues={initialValues}
       validate={validateInputs}
-      onSubmit={props.onSubmit}
+      onSubmit={onSubmit}
     >
       {({ isSubmitting }) => (
         <Form>
                      
-            <Field  type="text" 
-                    name="Título"
+            <Field  type="text"
+                    name="title"
                     label='Título'
                     component={PortInput}/>
-            <Field  type="text" 
-                    name="Compañía"
+            <Field  type="text"
+                    name="company"
                     label='Compañía'
                     component={PortInput}/>
-            <Field  type="text" 
-                    name="Ubicación"
+            <Field  type="text"
+                    name="location"
                     label='Ubicación'
                     component={PortInput}/>
-            <Field  type="text" 
-                    name="Posición"
+            <Field  type="text"
+                    name="position"
                     label='Posición'
                     component={PortInput}/>
-            <Field  type="textarea" 
-                    name="Descripción"
+            <Field  type="textarea"
+                    name="description"
                     label='Descripción'
                     component={PortInput}/>
-          
-            
-            
-          
-
-          
-
             <Field  
                     name="startDate"
                     label='Start Date'
+                    initialDate={initialValues.startDate}
                     component={PortDate}/>
 
             <Field  
                     name="endDate"
                     label='End Date'
                     canBeDisabled={true}
+                    initialDate={initialValues.endDate}
                     component={PortDate}/>
-
+          {
+            error&&
+            <Alert color="danger">
+              {error}
+            </Alert>
+          }
           <Button color="success" type="submit" disabled={isSubmitting}>
             Create
           </Button>

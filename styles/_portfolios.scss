@@ -4,7 +4,7 @@
     background-color: $base-page-white;
   
     .portfolio-card {
-      background-image: linear-gradient(45deg, #4e54c8 0%, #8f94fb 100%);
+      background-image: linear-gradient(45deg, #5ec08f 0%, #758fad 100%);
       border: none;
       color: white;
       transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s;
@@ -47,5 +47,8 @@
         text-transform: lowercase;
         margin-bottom: 50px;
       }
+    }
+    .create-port-butt{
+        margin-bottom: 20px
     }
   }
