@@ -1,8 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Menu} from './components'
-import {MarkButton} from './renderers'
+import {MarkButton,BlockButton} from './renderers'
 import { css } from 'emotion'
+
 const HoverMenu = React.forwardRef(({ editor }, ref) => {
     const root = window.document.getElementById('__next')
     return ReactDOM.createPortal(
@@ -25,6 +26,12 @@ const HoverMenu = React.forwardRef(({ editor }, ref) => {
         <MarkButton editor={editor} type="italic" icon="format_italic" />
         <MarkButton editor={editor} type="underlined" icon="format_underlined" />
         <MarkButton editor={editor} type="code" icon="code" />
+        
+        <BlockButton editor={editor} type="heading-one" icon="looks_one"  />
+        <BlockButton editor={editor} type="heading-two" icon="looks_two"  />
+        <BlockButton editor={editor} type="block-quote" icon="format_quote"  />
+        <BlockButton editor={editor} type="numbered-list" icon="format_list_numbered"  />
+        <BlockButton editor={editor} type="bulleted-list" icon="format_list_bulleted"  />
       </Menu>,
       root
     )

@@ -8,7 +8,7 @@ class About extends React.Component{
     render(){
         return (            
             <BaseLayout {...this.props.auth} >
-                 <BasePage className="blog-editor-page" title='Escribe Algo :)' >
+                 <BasePage containerClass="editor-wrapper" className="blog-editor-page" title='Escribe Algo :)' >
 
                     <SlateEditor/>
                 </BasePage>
