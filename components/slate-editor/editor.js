@@ -3,7 +3,10 @@ import { Editor } from 'slate-react'
 import {initialValue} from './initial-value'
 import {renderMark,renderBlock } from './renderers/index';
 import HoverMenu from './HoverMenu'
- 
+import ControllMenu from './controllMenu'
+import Html from 'slate-html-serializer'
+import {rules} from './rules'
+const html = new Html({ rules })
 // Define a React component renderer for our code blocks.
 export default class SlateEditor extends React.Component {
     // Set the initial value when the app is first constructed.
@@ -51,17 +54,39 @@ export default class SlateEditor extends React.Component {
       rect.width / 2}px`
   }
  
- 
+
+  getTitle(){
+    const { value } = this.state;
+    const firstBlock = value.document.getBlocks().get(0);
+    const secondBlock = value.document.getBlocks().get(1);
+
+    const title = firstBlock && firstBlock.text ? firstBlock.text : 'No Title';
+    const subtitle = secondBlock && secondBlock.text ? secondBlock.text : 'No Subtitle';
+    return{
+      title,
+      subtitle
+    }
+  }
+  save(){
+    const {value}=this.state
+    const {save}=this.props;
+    const headingValues=this.getTitle();
+    const text=html.serialize(value);
+
+    save(text,headingValues)
+  }
  
  
     // Render the editor.
     render() {
         const {isLoaded}=this.state;
+        
         return (
         <React.Fragment>
  
          {isLoaded&&
-            <Editor placeholder="Escribe Algo..."
+            <Editor {...this.props}
+                     placeholder="Escribe Algo..."
                      value={this.state.value}
                      onChange={this.onChange}
                      renderMark={renderMark}
@@ -73,8 +98,10 @@ export default class SlateEditor extends React.Component {
     }
     renderEditor = (props, editor, next) => {
         const children = next()
+        const {isLoading}=props
         return (
           <React.Fragment>
+            <ControllMenu isLoading={isLoading} save={()=>this.save()} ></ControllMenu>
             {children}
             
             <HoverMenu ref={menu => (this.menu = menu)} editor={editor} />

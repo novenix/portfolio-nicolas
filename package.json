@@ -41,6 +41,7 @@
     "reactstrap": "^7.1.0",
     "save": "^2.3.3",
     "slate": "^0.47.4",
+    "slate-html-serializer": "^0.8.6",
     "slate-react": "^0.22.4"
   }
 }

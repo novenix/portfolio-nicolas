@@ -61,8 +61,12 @@ export const updatePortfolio=async(portfolioData)=>{
 export const deletePortfolio=(portfolioId)=>{
     return axiosInstance.delete(`/portfolios/${portfolioId}`,setAuthHeader()).then(response=>response.data)
 }
-// export const getSecretDataServer=async (req)=>{
-    
-   
-//     return await axios.get(url,setAuthHeader(req)).then(response=>response.data);
-// }
+//------------------Blog Actions ________________
+export const createBlog=(blogData)=>{
+    return axiosInstance.post('/blogs',blogData,setAuthHeader())
+        .then(response=>{
+            console.log(response)
+            return response.data})
+        .catch(err=>rejectPromise(err))
+
+}
