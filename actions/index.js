@@ -62,11 +62,12 @@ export const deletePortfolio=(portfolioId)=>{
     return axiosInstance.delete(`/portfolios/${portfolioId}`,setAuthHeader()).then(response=>response.data)
 }
 //------------------Blog Actions ________________
-export const createBlog=(blogData)=>{
-    return axiosInstance.post('/blogs',blogData,setAuthHeader())
-        .then(response=>{
-            console.log(response)
-            return response.data})
+export const createBlog=(blogData,lockId)=>{
+    return axiosInstance.post(`/blogs?lockId=${lockId}`,blogData,setAuthHeader())
+        .then(response=>response.data)
         .catch(err=>rejectPromise(err))
 
+}
+export const getBlogById=(blogId)=>{
+    return axiosInstance.get(`/blogs/${blogId}`).then(response=>response.data)
 }

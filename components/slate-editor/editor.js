@@ -6,18 +6,21 @@ import HoverMenu from './HoverMenu'
 import ControllMenu from './controllMenu'
 import Html from 'slate-html-serializer'
 import {rules} from './rules'
+import { Value } from 'slate'
 const html = new Html({ rules })
 // Define a React component renderer for our code blocks.
 export default class SlateEditor extends React.Component {
     // Set the initial value when the app is first constructed.
     state = {
-      value: initialValue,
+      value: Value.create(),
       //value: Value.fromJSON(initialValue),
-      isLoaded:false,
+      isLoaded:false
     }
     componentDidMount(){
+        const valueFromProps=this.props.initialValue;
+        const value =valueFromProps?Value.fromJSON(html.deserialize(valueFromProps)):Value.fromJSON(initialValue);
         this.updateMenu();
-        this.setState({isLoaded:true})
+        this.setState({isLoaded:true,value})
     }
  
     componentDidUpdate = () => {
@@ -67,13 +70,18 @@ export default class SlateEditor extends React.Component {
       subtitle
     }
   }
+  getStory(){
+    const { value } = this.state;
+    const thirdBlock = value.document.getBlocks().get(0);
+  }
   save(){
     const {value}=this.state
-    const {save}=this.props;
+    const {save,isLoading}=this.props;
     const headingValues=this.getTitle();
+    console.log(value)
     const text=html.serialize(value);
-
-    save(text,headingValues)
+    
+    !isLoading && save(text,headingValues)
   }
  
  

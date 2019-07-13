@@ -8,13 +8,13 @@ const BLOCK_TAGS = {
     h2:'heading-two'
   }
   // Add a dictionary of mark tags.
-  const MARK_TAGS = {
+const MARK_TAGS = {
     em: 'italic',
     strong: 'bold',
     u: 'underline',
     code:'code'
   }
-  export const rules = [
+export const rules = [
     {
       deserialize(el, next) {
         const type = BLOCK_TAGS[el.tagName.toLowerCase()]

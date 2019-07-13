@@ -1,24 +1,36 @@
 // model del portfolio
 Blog = require("../models/blog");
-
+const AsyncLock = require('async-lock');
+const lock = new AsyncLock();
+ 
 const createBlog = (req, res) => {
-  const blogData = req.body;
-  //console.log(portfolioData);
-  // obtener id de usuario que viene de auth 0
-  //const userId=req.user&&req.user.sub;
-
-  const blog = new Blog(blogData);
-  if (req.user) {
-    blog.userId = req.user.sub;
-    blog.author = req.user.name;
+  const lockId=req.query.lockId;
+  if(!lock.isBusy(lockId)){
+    lock.acquire(lockId, function(done) {
+      const blogData = req.body;
+      
+      const blog = new Blog(blogData);
+      if (req.user) {
+        blog.userId = req.user.sub;
+        blog.author = req.user.name;
+      }
+    
+      blog.save((err, createdBlog) => {
+        setTimeout(() =>done(),5000);
+        if (err) {
+          return res.status(422).send(err);
+        }
+        return res.json(createdBlog);
+      });
+    }, function(err, ret) {
+        err&&console.err(err)
+    });
   }
-
-  blog.save((err, createdBlog) => {
-    if (err) {
-      return res.status(422).send(err);
-    }
-    return res.json(createdBlog);
-  });
+  else{
+    return res.status(422).send({message:"el blog se esta guardando!"})
+  }
+  
+  
 };
 const getBlogById =(req,res)=>{
   const blogId = req.params.id;
