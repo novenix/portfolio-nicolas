@@ -31,6 +31,18 @@ export default class SlateEditor extends React.Component {
  
       this.setState({ value })
     }
+onKeyDown(event,change,next){
+  const {isLoading}=this.props;
+  
+  if(!isLoading && event.which===83&&(event.ctrlKey || event.metaKey)){
+    event.preventDefault()
+    
+    this.save()
+    return;
+  }
+  next();
+}
+
     menuRef = React.createRef()
  
     updateMenu = () => {
@@ -78,7 +90,7 @@ export default class SlateEditor extends React.Component {
     const {value}=this.state
     const {save,isLoading}=this.props;
     const headingValues=this.getTitle();
-    console.log(value)
+    // console.log(value)
     const text=html.serialize(value);
     
     !isLoading && save(text,headingValues)
@@ -97,6 +109,7 @@ export default class SlateEditor extends React.Component {
                      placeholder="Escribe Algo..."
                      value={this.state.value}
                      onChange={this.onChange}
+                     onKeyDown={(event,change,next)=>this.onKeyDown(event,change,next)}
                      renderMark={renderMark}
                      renderBlock ={renderBlock }
                      renderEditor={this.renderEditor}

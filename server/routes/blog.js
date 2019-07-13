@@ -11,4 +11,7 @@ router.post('', authService.checkJWT,
                 blogController.createBlog)
 
 router.get("/:id",blogController.getBlogById);
+router.patch('/:id', authService.checkJWT,
+                authService.checkRole('siteOwner'),
+                blogController.updateBlog)
 module.exports=router;

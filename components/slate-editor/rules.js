@@ -11,7 +11,7 @@ const BLOCK_TAGS = {
 const MARK_TAGS = {
     em: 'italic',
     strong: 'bold',
-    u: 'underline',
+    u: 'underlined',
     code:'code'
   }
 export const rules = [

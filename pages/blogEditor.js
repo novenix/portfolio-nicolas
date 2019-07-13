@@ -24,8 +24,8 @@ class BlogEditor extends React.Component{
         blog.title=heading.title;
         blog.subTitle = heading.subtitle;
         blog.story=story;
-        console.log(blog)
-        console.log(story)
+        // console.log(blog)
+        // console.log(story)
         this.setState({isSaving:true})
         createBlog(blog,lockId).then(createdBlog=>{
             this.setState({isSaving:false})
