@@ -5,6 +5,7 @@ import {Router} from '../routes'
 // componente HOC(hig order component) para saber si esta logueado o no
 import withAuth from '../components/HOC/withAuth'
 import SlateEditor from '../components/slate-editor/editor'
+import { toast } from 'react-toastify';
 import {createBlog} from '../actions/index'
 class BlogEditor extends React.Component{
     constructor(props){
@@ -19,7 +20,7 @@ class BlogEditor extends React.Component{
     }
     
     saveBlog(story,heading){
-        const {lockId}=this.state;
+        const {lockId,blogId}=this.state;
         const blog={};
         blog.title=heading.title;
         blog.subTitle = heading.subtitle;
@@ -29,12 +30,19 @@ class BlogEditor extends React.Component{
         this.setState({isSaving:true})
         createBlog(blog,lockId).then(createdBlog=>{
             this.setState({isSaving:false})
+            toast.success(`Nuevo Post Guardado Correctamente !`, {
+                position: toast.POSITION.TOP_CENTER
+              });
             Router.pushRoute(`/blogs/${createdBlog._id}/edit`)
         
         }).catch((err) => {
             
             this.setState({isSaving:false})
+            
             const message = err.message || 'Server Error!';
+            toast.error("Error inesperado. Copia tu progreso y refresca la pagina Por Favor", {
+                position: toast.POSITION.TOP_LEFT
+              });
             console.error(message);
         })
     }

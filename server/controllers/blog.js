@@ -43,6 +43,15 @@ const getBlogById =(req,res)=>{
   })
            
 }
+const getUserBlogs=(req,res)=>{
+  const userId=req.user.sub;
+  Blog.find({userId},function(err,userBlogs){
+    if (err){
+      return res.status(422).send(err);
+    }
+    return res.json(userBlogs);
+  })
+}
 const updateBlog=(req,res)=>{
   const blogId=req.params.id;
   const blogData=req.body;
@@ -63,5 +72,6 @@ const updateBlog=(req,res)=>{
 module.exports = {
   createBlog,
   getBlogById,
-  updateBlog
+  updateBlog,
+  getUserBlogs
 };

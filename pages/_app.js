@@ -7,6 +7,9 @@ import auth0 from '../services/auth0'
 import '../styles/main.scss'
 // estilos de los reactstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const namespace="http://localhost:3000"
 // -----
 export default class MyApp extends App {
@@ -35,6 +38,7 @@ export default class MyApp extends App {
 
     return (
       <Container>
+        <ToastContainer />
         <Component {...pageProps } auth={auth} />
       </Container>
     )
