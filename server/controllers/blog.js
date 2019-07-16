@@ -1,8 +1,20 @@
 // model del portfolio
 Blog = require("../models/blog");
+const slugify = require('slugify')
+
 const AsyncLock = require('async-lock');
 const lock = new AsyncLock();
- 
+
+const getBlogs =(req,res)=>{
+  Blog.find({status:'published'},function(err,publishedBlogs){
+    if(err){
+      return res.status(422).send(err)
+    }
+    return res.json(publishedBlogs)
+  })
+}
+
+
 const createBlog = (req, res) => {
   const lockId=req.query.lockId;
   if(!lock.isBusy(lockId)){
@@ -59,6 +71,15 @@ const updateBlog=(req,res)=>{
     if (err){
       return res.status(422).send(err);
     }
+
+    if(blogData.status && blogData.status ==='published'&&!foundBlog.slug){
+      foundBlog.slug=slugify(foundBlog.title, {
+                                replacement: '-',    // replace spaces with replacement
+                                remove: null,        // regex to remove characters
+                                lower: true          // result in lower case
+                              })
+    }
+
     foundBlog.set(blogData);
     foundBlog.updatedAt=new Date()
     foundBlog.save((err,foundBlog)=>{
@@ -69,9 +90,22 @@ const updateBlog=(req,res)=>{
     })
   });
 }
+
+const deleteBlog=(req,res)=>{
+  const blogId=req.params.id;
+  Blog.deleteOne({_id:blogId},function(err){
+    if(err){
+      return res.status(422).send(err);
+    }
+    res.json({status:'deleted'})
+  })
+}
+
 module.exports = {
   createBlog,
   getBlogById,
   updateBlog,
-  getUserBlogs
+  getUserBlogs,
+  deleteBlog,
+  getBlogs
 };

@@ -62,6 +62,9 @@ export const deletePortfolio=(portfolioId)=>{
     return axiosInstance.delete(`/portfolios/${portfolioId}`,setAuthHeader()).then(response=>response.data)
 }
 //------------------Blog Actions ________________
+export const getBlogs=async(req)=>{
+    return await axiosInstance.get('/blogs').then(response=>response.data)
+}
 export const getUserBlogs=async(req)=>{
     const url='/blogs/me';
 
@@ -80,4 +83,9 @@ export const updateBlog=(blogData,blogId)=>{
     return axiosInstance.patch(`/blogs/${blogId}`,blogData,setAuthHeader())
         .then(response=>response.data)
         .catch(err=>rejectPromise(err))
+}
+export const deleteBlog=(blogId)=>{
+    return axiosInstance.delete(`/blogs/${blogId}`,setAuthHeader())
+    .then(response=>response.data)
+    .catch(err=>rejectPromise(err))
 }

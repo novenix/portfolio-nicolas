@@ -4,9 +4,46 @@ import BasePage from '../components/basepage'
 import {Row,Col,Container}from 'reactstrap';
 import {Link} from '../routes'
 import moment from 'moment'
+import { getBlogs } from '../actions';
 class Blogs extends React.Component{
+    static async getInitialProps({req}){
+        let blogs=[]
+        try{
+            blogs=await getBlogs(req);
+            //console.log(blogs)
+        }   
+        catch(err){
+            console.error(err)
+        }
+        //console.log(blogs)
+        return {blogs}
+    }
+    renderBlogs=(blogs)=>(
+
+        blogs.map((blog,index)=>(
+            <div key={index} className="post-preview">
+                <Link route={`/blogs/${blog.slug}`}>
+                    <a>
+                    <h2 className="post-title">
+                        {blog.title}
+                    </h2>
+                    <h3 className="post-subtitle">
+                         {blog.subTitle}
+                    </h3>
+                    </a>
+                </Link>
+                <p className="post-meta">Posted by
+                    <a href="#"> {blog.author} </a>
+                    {moment(blog.createdAt).format('LLLL')}</p>
+            </div>
+        ))
+    )
+
+    
     render(){
-        return(            
+        const {blogs}=this.props;
+        //console.log(blogs)
+        return(           
             <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page">
                 <div className="masthead" style={{"backgroundImage": "url('/static/images/home-bg.jpg')"}}>
                 <div className="overlay"></div>
@@ -14,8 +51,8 @@ class Blogs extends React.Component{
                     <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
                         <div className="site-heading">
-                        <h1>Fresh Blogs</h1>
-                        <span className="subheading">Programming, travelling...</span>
+                        <h1>Blogs Nicolás</h1>
+                        <span className="subheading">Programación,tecnología,Sci-Fi...</span>
                         </div>
                     </div>
                     </div>
@@ -25,59 +62,10 @@ class Blogs extends React.Component{
                 <Row>
                     <Col md="10" lg="8" className="mx-auto">
                     {
-                        <React.Fragment>
-                        <div  className="post-preview">
-                        <Link route={`/blogs/blogId`}>
-                            <a>
-                            <h2 className="post-title">
-                                Very Nice Blog Post
-                            </h2>
-                            <h3 className="post-subtitle">
-                                How I Start Porgramming...
-                            </h3>
-                            </a>
-                        </Link>
-                        <p className="post-meta">Posted by
-                            <a href="#"> Filip Jerga </a>
-                            {moment().format('LLLL')}</p>
-                        </div>
-                        <hr></hr>
-                        <div  className="post-preview">
-                        <Link route={`/blogs/blogId`}>
-                            <a>
-                            <h2 className="post-title">
-                                Very Nice Blog Post
-                            </h2>
-                            <h3 className="post-subtitle">
-                                How I Start Porgramming...
-                            </h3>
-                            </a>
-                        </Link>
-                        <p className="post-meta">Posted by
-                            <a href="#"> Filip Jerga </a>
-                            {moment().format('LLLL')}</p>
-                        </div>
-                        <hr></hr>
-                        <div  className="post-preview">
-                        <Link route={`/blogs/blogId`}>
-                            <a>
-                            <h2 className="post-title">
-                                Very Nice Blog Post
-                            </h2>
-                            <h3 className="post-subtitle">
-                                How I Start Porgramming...
-                            </h3>
-                            </a>
-                        </Link>
-                        <p className="post-meta">Posted by
-                            <a href="#"> Filip Jerga </a>
-                            {moment().format('LLLL')}</p>
-                        </div>
-                        <hr></hr>
-                    </React.Fragment>
+                        this.renderBlogs(blogs)
                     }
                     <div className="clearfix">
-                        <a className="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+                        <a className="btn btn-primary float-right" href="#">Posts Antiguos &rarr;</a>
                     </div>
                     </Col>
                 </Row>
@@ -112,7 +100,7 @@ class Blogs extends React.Component{
                             </a>
                             </li>
                         </ul>
-                        <p className="copyright text-muted">Copyright &copy; Filip Jerga 2018</p>
+                        <p className="copyright text-muted">Copyright &copy; Nicolas Torres 2019</p>
                         </div>
                     </Row>
                     </Container>

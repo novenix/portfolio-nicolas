@@ -4,9 +4,10 @@ import BaseLayout from '../components/layouts/BaseLayout'
 import BasePage from '../components/basepage'
 // componente HOC(hig order component) para saber si esta logueado o no
 import withAuth from '../components/HOC/withAuth'
+import PortButtonDropDown from '../components/buttonDropdown'
 import {Container,Row,Col} from 'reactstrap'
-import {getUserBlogs} from '../actions/index'
-import  {Link} from '../routes'
+import {getUserBlogs,updateBlog,deleteBlog} from '../actions/index'
+import  {Link,Router} from '../routes'
 class UserBlogs extends React.Component{
     static async getInitialProps({req}){
         let blogs=[]
@@ -19,15 +20,47 @@ class UserBlogs extends React.Component{
         return {blogs}
     }
 
+    changeBlogStatus(status,blogId){
+        updateBlog({status},blogId).then(()=>{
+            Router.pushRoute('/userBlogs')
+        }).catch(err=>{
+            console.error(err.message)
+        })
+    }
+    deleteBlogWarning(blogId){
+        const res=confirm('Estás seguro que quieres borrar el post?')
+        if(res){
+            this.deleteBlog(blogId)
+        }
+    }
+    deleteBlog(blogId){
+        deleteBlog(blogId).then(status=>{
+            Router.pushRoute('/userBlogs')
+        }).catch(err=>console.error(err.message))
+    }
+
     separateBlogs(blogs){
         const published=[];
         const drafts=[];
-        debugger;
+        // debugger;
         blogs.forEach((blog) => {
             blog.status==='draft'?drafts.push(blog):published.push(blog);
         });
         return {published,drafts}
     }
+    createStatus(status){
+        return status === 'draft'?{view:'Publicar Historia',value:'published'}
+                                : {view:'Hacer Borrador',value:'draft'};
+    }
+    
+    dropdownOptions=(blog)=>{
+        const status=this.createStatus(blog.status);
+        return [
+            {text:status.view ,handlers:{onClick:()=>this.changeBlogStatus(status.value,blog._id)} },
+            {text:'Borrar',handlers:{onClick:()=>this.deleteBlogWarning(blog._id)}}
+        ]
+    }
+    
     renderBlogs(blogs){
         return (
             <ul className='user-blogs-list'>
@@ -37,6 +70,7 @@ class UserBlogs extends React.Component{
                             <Link route={`/blogs/${blog._id}/edit`}>
                                 <a>{blog.title}</a>
                             </Link>
+                            <PortButtonDropDown items={this.dropdownOptions(blog)} />
                         </li>
                     ))
                 }
