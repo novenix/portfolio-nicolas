@@ -5,7 +5,7 @@ import BasePage from '../components/basepage'
 // componente HOC(hig order component) para saber si esta logueado o no
 import withAuth from '../components/HOC/withAuth'
 import PortButtonDropDown from '../components/buttonDropdown'
-import {Container,Row,Col} from 'reactstrap'
+import {Container,Row,Col,Button} from 'reactstrap'
 import {getUserBlogs,updateBlog,deleteBlog} from '../actions/index'
 import  {Link,Router} from '../routes'
 class UserBlogs extends React.Component{
@@ -88,14 +88,20 @@ class UserBlogs extends React.Component{
                 <div className="row">
                 <div className="col-lg-8 col-md-10 mx-auto">
                     <div className="site-heading">
-                    <h1>Fresh Blogs</h1>
-                    <span className="subheading">Programming, travelling...</span>
+                    <h1>Dashboard</h1>
+                    <span className="subheading">Escribamos buenos blogs <Link  route='/blogs/new' >
+                            <Button color='primary'>
+                                Crear Nuevo Blog
+                            </Button>
+                        </Link>
+                    </span>
                     </div>
                 </div>
                 </div>
             </Container>
             </div>
             <BasePage className="blog-user-page">
+            
             <Row>
                 <Col md='6' className='mx-auto text-center' >
                     <h2 className='blog-Status-title' >Blogs Publicados</h2>

@@ -5,7 +5,7 @@ const router=express.Router();
 const authService=require('../services/auth')
 const blogController=require('../controllers/blog')
 
-
+router.get("/s/:slug",blogController.getBlogBySlug);
 router.get("",blogController.getBlogs);
 router.get("/me",authService.checkJWT,
                 authService.checkRole('siteOwner'),

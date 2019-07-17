@@ -160,7 +160,7 @@
     }
   }
   //pagina blog editor
-  .blog-editor-page{
+  .blog-editor-page,.blog-detail-page{
     // solo para pantallas mas grandes de 991 px
     @media only screen and(min-width:991px){
       .editor-wrapper{

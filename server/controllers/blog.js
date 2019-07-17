@@ -6,15 +6,26 @@ const AsyncLock = require('async-lock');
 const lock = new AsyncLock();
 
 const getBlogs =(req,res)=>{
-  Blog.find({status:'published'},function(err,publishedBlogs){
+  Blog.find({status:'published'})
+    .sort({'createdAt':-1})
+    .exec(function(err,publishedBlogs){
+      if(err){
+        return res.status(422).send(err)
+      }
+      return res.json(publishedBlogs)
+    })
+  
+}
+
+const getBlogBySlug=(req,res)=>{
+  const slug =req.params.slug;
+  Blog.findOne({slug},function(err,foundBlog){
     if(err){
       return res.status(422).send(err)
     }
-    return res.json(publishedBlogs)
+    return res.json(foundBlog)
   })
 }
-
-
 const createBlog = (req, res) => {
   const lockId=req.query.lockId;
   if(!lock.isBusy(lockId)){
@@ -107,5 +118,6 @@ module.exports = {
   updateBlog,
   getUserBlogs,
   deleteBlog,
-  getBlogs
+  getBlogs,
+  getBlogBySlug
 };
