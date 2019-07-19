@@ -5,11 +5,11 @@ const next = require("next");
 const mongoose = require("mongoose");
 
 const bodyParser = require("body-parser");
-
+// const favicon = require('serve-favicon')
 const routes = require("../routes");
 // service:revisa la validez del token
 const authService = require("./services/auth");
-
+const path=require('path')
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 // esta parte es para el next-routes
@@ -22,7 +22,12 @@ const Book = require("./models/book");
 const bookRoutes = require("./routes/book");
 const portfolioRoutes = require("./routes/portfolio");
 const blogRoutes = require("./routes/blog");
-
+const robotsOptions={
+  root:path.join(__dirname,'../static'),
+  headers:{
+    'Content-Type':'text/plain;charset=UTF-8'
+  }
+}
 const secretData = [
   {
     title: "secretData 1",
@@ -54,7 +59,10 @@ app
     server.use("/api/v1/portfolios", portfolioRoutes);
     //ruta para blogs con site owner para publicar
     server.use("/api/v1/blogs", blogRoutes);
-
+    // server.use(favicon(join(__dirname, 'static', 'favicon.ico')));
+    server.get('/robots.txt',(req,res)=>{
+      return res.status(200).sendFile('robots.txt',robotsOptions)
+    })
     //   endpoint:ruta, middleware, route handler
     server.get("/api/v1/secret", authService.checkJWT, (req, res) => {
       // console.log('_______user__________')

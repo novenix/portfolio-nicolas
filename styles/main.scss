@@ -3,11 +3,15 @@
 @import './index';
 // components
 @import './header';
+//mixins
+@import './shared/mixins';
 // colores
 @import './shared/colors';
 @import './portfolios';
 @import './blogs';
 @import './slate-editor';
+@import './cv';
+@import './about';
 
 html,body{
     height:100%;

@@ -5,6 +5,8 @@ import {Row,Col,Container}from 'reactstrap';
 import {Link} from '../routes'
 import moment from 'moment'
 import { getBlogs } from '../actions';
+import {shortenText} from '../helpers/utils'
+
 class Blogs extends React.Component{
     static async getInitialProps({req}){
         let blogs=[]
@@ -28,7 +30,7 @@ class Blogs extends React.Component{
                         {blog.title}
                     </h2>
                     <h3 className="post-subtitle">
-                         {blog.subTitle}
+                         {shortenText( blog.subTitle,124)}
                     </h3>
                     </a>
                 </Link>
@@ -44,14 +46,14 @@ class Blogs extends React.Component{
         const {blogs}=this.props;
         //console.log(blogs)
         return(           
-            <BaseLayout {...this.props.auth} headerType={'landing'} className="blog-listing-page">
+            <BaseLayout title='Nicolas Torres - Blogs Para Leer' {...this.props.auth} headerType={'landing'} className="blog-listing-page">
                 <div className="masthead" style={{"backgroundImage": "url('/static/images/home-bg.jpg')"}}>
                 <div className="overlay"></div>
                 <Container>
                     <div className="row">
                     <div className="col-lg-8 col-md-10 mx-auto">
                         <div className="site-heading">
-                        <h1>Blogs Nicolás</h1>
+                        <h1>Blogs Nicolás Torres</h1>
                         <span className="subheading">Programación,tecnología,Sci-Fi...</span>
                         </div>
                     </div>

@@ -76,7 +76,7 @@ class UserBlogs extends React.Component{
                 }
             </ul>
         )
-    }
+    } 
     render(){
         const{blogs}=this.props;
         const {published,drafts}= this.separateBlogs(blogs);
