@@ -4,7 +4,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import {getCookieFromReq} from '../helpers/utils'
 const axiosInstance=axios.create({
-    baseURL:'http://localhost:3000/api/v1',
+    baseURL:`${process.env.BASE_URL}/api/v1`,
     // si se demora mas de 3 segundos es una peticion fail
     timeout:3000
 })

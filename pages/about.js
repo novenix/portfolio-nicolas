@@ -20,7 +20,8 @@ class About extends React.Component{
             </Col>
             <Col md="6">
               <div className="fadein">
-              <p>Descarga mi CV en la seccion de arriba </p>
+              <p>Descarga mi CV en la seccion de arriba y visita mis redes al final de mis blogs (GIT)  </p>
+             
                 <p>Mi Nombre es Nicolás Torres </p>
                 <p>
                 Soy estudiante de la Escuela Colombiana De Ingenieria Julio Garavito

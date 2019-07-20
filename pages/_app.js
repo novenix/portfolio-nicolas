@@ -5,6 +5,7 @@ import App, { Container } from 'next/app'
 import auth0 from '../services/auth0'
 // stylings
 import '../styles/main.scss'
+import Fonts from '../helpers/fonts'
 // estilos de los reactstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { ToastContainer } from 'react-toastify';
@@ -34,7 +35,9 @@ export default class MyApp extends App {
 
     return { pageProps,auth }
   }
-
+  componentDidMount(){
+    Fonts();
+  }
   render () {
     const { Component, pageProps,auth } = this.props
 

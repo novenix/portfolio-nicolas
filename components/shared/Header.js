@@ -136,6 +136,7 @@ export default class Header extends React.Component {
   }
   render() {
     const {isAuthenticated,user,className}=this.props
+    console.log(className)
     const {isOpen}=this.state;
     const menuOpenClass=isOpen?'menu-open':'menu-close'
     return (
@@ -158,11 +159,11 @@ export default class Header extends React.Component {
                 <BsNavLink route="/cv" text="CV" />
               </NavItem>
               <NavItem className="port-navbar-item" >
-                <BsNavLink route="/about" text="Acerca De" />
+                <BsNavLink route="/about" text="About" />
               </NavItem>
-              <NavItem className="port-navbar-item" >
-                <BsNavLink route="https://github.com/novenix" text="GITHUB" ></BsNavLink>
-              </NavItem>
+              {/* <NavItem className="port-navbar-item" >
+                <BsNavLink route="https://github.com/novenix" text="GIT" ></BsNavLink>
+              </NavItem> */}
 
               {!isAuthenticated &&
                 <NavItem className="port-navbar-item" >

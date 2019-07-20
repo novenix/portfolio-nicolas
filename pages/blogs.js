@@ -107,7 +107,9 @@ class Blogs extends React.Component{
                     </Row>
                     </Container>
                 </footer>
+                
                 </BasePage>
+
           </BaseLayout>
           
             
