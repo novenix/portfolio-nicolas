@@ -11,6 +11,7 @@ const BaseLayout =(props)=>{
     const {className , children,isAuthenticated,user,isSiteOwner,cannonical} = props;
     const headerType=props.headerType||'default';
     const title=props.title||'Nicolas Torres - Portafolio'
+    
     return(
         <React.Fragment>
             <Head>

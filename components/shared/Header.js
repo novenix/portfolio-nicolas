@@ -136,7 +136,7 @@ export default class Header extends React.Component {
   }
   render() {
     const {isAuthenticated,user,className}=this.props
-    console.log(className)
+    
     const {isOpen}=this.state;
     const menuOpenClass=isOpen?'menu-open':'menu-close'
     return (
