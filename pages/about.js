@@ -14,13 +14,13 @@ class About extends React.Component{
             <Col md="6">
               <div className="left-side">
                 <h1 className="title fadein">Hola, Bienvenido</h1>
-                <h4 className="subtitle fadein">A Acerca De Mi</h4>
+                <h4 className="subtitle fadein">Pagina realizada en NEXT.JS,NODE.JS y MongoDB</h4>
                 <p className="subsubTitle fadein">No Olvides de visitar Mis Blogs</p>
               </div>
             </Col>
             <Col md="6">
               <div className="fadein">
-              <p>Descarga mi CV en la seccion de arriba y visita mis redes al final de mis blogs (GIT)  </p>
+              <p>Descarga mi HOJA DE VIDA en PDF en la seccion CV y visita mis Blogs  </p>
              
                 <p>Mi Nombre es Nicolás Torres </p>
                 <p>
@@ -30,6 +30,33 @@ class About extends React.Component{
                 Desde que empecé mi carrera he tenido mucha curiosidad por la programación web en general
                 y desde que aprendí todo lo necesario de next.js (react.js) y Node.js junto con MongoDB 
                 he podido realizar pequeños proyectos para servicios web con api rest.
+                </p>
+                <h2>
+                  conocimientos:
+                </h2>
+                <h4>
+                  Web Front-End:
+                </h4>
+                <p>
+                  Next.js(basado en React.js) ,React.js
+                </p>
+                <h4>
+                  app Front-End:
+                </h4>
+                <p>
+                  React Native
+                </p>
+                <h4>
+                  Back-End:
+                </h4>
+                <p>
+                  Node.js ,Flask
+                </p>
+                <h4>
+                  Bases De Datos:
+                </h4>
+                <p>
+                  MongoDB,MySQL
                 </p>
               </div>
             </Col>
