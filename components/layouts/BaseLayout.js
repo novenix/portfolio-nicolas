@@ -16,6 +16,7 @@ const BaseLayout =(props)=>{
         <React.Fragment>
             <Head>
                 <title>{title}</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <meta name="description" content ='Mi Nombre es Nicolás Torres.Soy estudiante de la Escuela Colombiana De Ingenieria Julio Garavito.Desde que empecé mi carrera he tenido mucha curiosidad por la programación web en general y desde que aprendí todo lo necesario de next.js (react.js) y Node.js junto con MongoDB he podido realizar pequeños proyectos para servicios web con api rest.' ></meta>
                 <meta name='keywords' content='nicolas torres, nicolas torres paez ,nicolas torres desarrollador web, desarrollador web Nicolas Torres,nicolas torres desarrollador web node,nicolas torres desarrollador web react,nicolas torres desarrollador mongodb nodejs y react, desarrollador react,desarrollador react.js,desarrollador node,desarrollador next.js,desarrollador next ' ></meta>
                 <meta property='og:title' conten='Nicolas Torres Desarrollador Web'></meta>
@@ -25,7 +26,7 @@ const BaseLayout =(props)=>{
                 <meta property='og:description' content='Mi Nombre es Nicolás Torres. 
                 Soy estudiante De Ingenieria De Software.Desde que empecé mi carrera he tenido mucha curiosidad por la programación web.
                 y '></meta>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                
                 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Reenie+Beanie|Titillium+Web:400,700&display=swap" rel="stylesheet"/>
                 {cannonical && <link rel='cannonical' href={`${process.env.BASE_URL}/${cannonical}`} />}
                 {/* <link rel="icon" type="image/ico" href="/static/favicon.ico"/> */}
