@@ -4,13 +4,14 @@ import Cookies from 'js-cookie'
 import jwt from 'jsonwebtoken'
 import axios from 'axios';
 import {getCookieFromReq}from '../helpers/utils'
+const CLIENT_ID=process.env.CLIENT_ID
 class Auth0 {
  
     constructor(){
             this.auth0 = new auth0.WebAuth({
             domain: 'novenix.auth0.com',
-            clientID: 'SBe4dxaK317aYsr9HKbC1XIb0X80V6gn',
-            redirectUri: 'http://localhost:3000/callback',
+            clientID: CLIENT_ID,
+            redirectUri: `${process.env.BASE_URL}/callback`,
             responseType: 'token id_token',
             scope: 'openid profile'
         });
@@ -42,30 +43,27 @@ class Auth0 {
  
     }
     setSession(authResult) {
-        // debugger;
+        //   ;
         //   save tokens
         // Set isLoggedIn flag in localStorage
         localStorage.setItem('isLoggedIn', 'true');
  
         // Set the time that the access token will expire at
         let expiresAt = (authResult.expiresIn * 1000) + new Date().getTime();
-        // this.accessToken = authResult.accessToken;
+       
         this.idToken = authResult.idToken;
         this.expiresAt = expiresAt;
-        console.log(authResult);
-        Cookies.set('user',authResult.idTokenPayload);
+        //console.log(authResult);
         Cookies.set('jwt',authResult.idToken);
-        Cookies.set('expiresAt',expiresAt);
- 
     }
  
     logout(){
-        Cookies.remove('user');
+        
         Cookies.remove('jwt');
-        Cookies.remove('expiresAt');
+        
         this.auth0.logout({
             returnTo:'',
-            clientID:'SBe4dxaK317aYsr9HKbC1XIb0X80V6gn'
+            clientID:CLIENT_ID
         })
     }
  
@@ -108,7 +106,7 @@ class Auth0 {
  
     }
     async clientAuth(){
-        // debugger;
+        //   ;
         // const tokenCookie=req.headers.cookie.split(';').find(c=> c.trim().startsWith('jwt='))
         // const token=tokenCookie.split('=')[1];
         const token = Cookies.getJSON('jwt')

@@ -72,7 +72,7 @@ class Portfolios extends React.Component{
         })
     }
     render(){
-        // debugger;
+        //   ;
         
         const {portfolios}=this.props;
         const {isAuthenticated,isSiteOwner}=this.props.auth;

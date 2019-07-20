@@ -4,7 +4,7 @@ import React from 'react'
 import BaseLayout from '../layouts/BaseLayout'
 import BasePage from '../basepage'
 
-const namespace='http://localhost:3000'
+//const namespace='http://localhost:3000'
 // role es el rol de owner o admin o user
 // antes estaba export default (role) =>(
     // (Component) =>....)
@@ -21,9 +21,9 @@ export default role =>Component =>
             return {...pageProps}
         }
         renderProtectedPage(){
-            // debugger;
+            //   ;
             const {isAuthenticated,user}=this.props.auth;
-            const userRole=user&&user[`${namespace}/role`]
+            const userRole=user&&user[`${process.env.NAMESPACE}/role`]
             let isAuthorized=false;
             if (role){
                 if(userRole&&userRole===role){isAuthorized=true}

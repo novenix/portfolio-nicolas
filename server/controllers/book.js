@@ -13,7 +13,7 @@ const getboks=(req,res)=>{
   }
   const saveBook=(req,res)=>{
     const bookData=req.body;
-    console.log(bookData)
+    
     const book=new Book(bookData);
 
     book.save((err,createdBook)=>{
@@ -25,7 +25,7 @@ const getboks=(req,res)=>{
     })
   }
   const updateBook=(req,res)=>{
-    console.log('entra')
+    
     const bookId=req.params.id;
     const bookData=req.body;
     Book.findById(bookId,(err,foundBook)=>{

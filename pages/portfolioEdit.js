@@ -16,7 +16,7 @@ class PortfolioEdit extends React.Component{
         catch(error){
             console.log(error)
         }
-        console.log(portfolio);
+      
         return{portfolio}
     }
     constructor(props){
@@ -31,7 +31,7 @@ class PortfolioEdit extends React.Component{
         //portfolioData.startDate = moment(portfolioData.startDate).toISOString();
         //portfolioData.endDate = moment(portfolioData.endDate).toISOString();
         setSubmitting(true);
-        //debugger;
+        //  ;
         //alert(JSON.stringify(portfoliodata, null, 2));
         updatePortfolio(portfolioData)
         .then((portfolio)=>{
@@ -42,7 +42,7 @@ class PortfolioEdit extends React.Component{
             
         })
         .catch((err)=>{
-            // debugger;
+            //   ;
             setSubmitting(true);
             const error=err||'server Error!';
             this.setState({error})

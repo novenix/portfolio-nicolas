@@ -42,7 +42,7 @@ class UserBlogs extends React.Component{
     separateBlogs(blogs){
         const published=[];
         const drafts=[];
-        // debugger;
+        //   ;
         blogs.forEach((blog) => {
             blog.status==='draft'?drafts.push(blog):published.push(blog);
         });

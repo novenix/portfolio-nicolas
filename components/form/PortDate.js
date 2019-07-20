@@ -7,7 +7,7 @@ import moment from "moment";
 export default class PortDate extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props)
+       
         const dateValue=props.initialDate?new Date(props.initialDate):new Date();
         const isHidden=props.initialDate?false:true;
         this.state = {

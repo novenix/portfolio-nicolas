@@ -87,9 +87,10 @@ app
           .send({ title: "unauthorized", details: "Unauthorized Access" });
       }
     });
-    server.use(handle).listen(3000, err => {
+    const PORT=process.env.POR||3000
+    server.use(handle).listen(PORT, err => {
       if (err) throw err;
-      console.log("> Ready on http://localhost:3000");
+      console.log(`> Ready on ${PORT}`);
     });
   })
 

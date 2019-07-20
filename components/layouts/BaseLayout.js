@@ -19,12 +19,12 @@ const BaseLayout =(props)=>{
                 <meta name='keywords' content='nicolas torres,nicolas torres desarrollador web, desarrollador web Nicolas Torres,nicolas torres desarrollador web node,nicolas torres desarrollador web react,nicolas torres desarrollador mongodb nodejs y react ' ></meta>
                 <meta property='og:title' conten='Nicolas Torres Desarrollador Web'></meta>
                 <meta property='og:locale' content='es-CO'></meta>
-                <meta property='og:url' content='http://localhost:3000'></meta>
+                <meta property='og:url' content={`${process.env.BASE_URL}`}></meta>
                 <meta property='og:type' content='website'></meta>
                 <meta property='og:description' content='Mi Nombre es Nicolás Torres. 
                 Soy estudiante De Ingenieria De Software.Desde que empecé mi carrera he tenido mucha curiosidad por la programación web.
                 y '></meta>
-                {cannonical && <link rel='cannonical' href={`http://localhost:3000/${cannonical}`} />}
+                {cannonical && <link rel='cannonical' href={`${process.env.BASE_URL}/${cannonical}`} />}
                 {/* <link rel="icon" type="image/ico" href="/static/favicon.ico"/> */}
                 <link rel="icon" type="image/ico" href="/static/favicon.ico"/>
 
