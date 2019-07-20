@@ -67,7 +67,7 @@ class BlogEditorUpdate extends React.Component{
             <BaseLayout {...this.props.auth} >
                  <BasePage containerClass="editor-wrapper" className="blog-editor-page">
 
-                    <SlateEditor initialValue={blog.story} isLoading={isSaving} save={this.updateBlogs} />
+                    <SlateEditor initialValue={blog.story}  isLoading={isSaving} save={this.updateBlogs} />
                 </BasePage>
             </BaseLayout>
            
