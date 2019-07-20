@@ -82,7 +82,7 @@ class Index extends  React.Component{
                   <Col md="6" className="hero-welcome-wrapper">
                     <div className="hero-welcome-text">
                       <h1>
-                        {console.log(isAuthenticated)}
+                       
                         {isAuthenticated && <span>{user.name}</span>}
                         <a> </a>
                         BIENVENIDO AL PORTFOLIO Y CV DE NICOLAS TORRES.

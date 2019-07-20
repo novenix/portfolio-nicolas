@@ -15,7 +15,9 @@
 html,body{
     height:100%;
     width:100%;
-    font-family: 'TitilliumWeb' ,'Helvetica';
+    font-family: 'TitilliumWeb', sans-serif !important ;
+    // font-family: 'Black Han Sans'!important ;
+    // font-family: 'Black Han Sans',sans-serif !important ;
 }
 .self-typed{
     font-size: 31px;
