@@ -98,7 +98,7 @@ export const MarkButton = ({ editor, type, icon }) => {
   export const renderBlock  = (props, editor, next) => {
     const { attributes, children, node } = props
   
-    // debugger;
+    //   ;
     switch (node.type) {
       case 'paragraph':
         return <p {...attributes}>{children}</p>

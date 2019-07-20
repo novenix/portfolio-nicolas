@@ -7,10 +7,10 @@ import PortDate from '../form/PortDate'
 
 const validateInputs=(values)=>{
     let errors = {};
-     //debugger;
+     //  ;
     
     Object.entries(values).forEach(([key,value])=>{
-      //debugger;
+      //  ;
         // if(!values[key] && (values[key]==="startDate" || values[key]==='endDate')){
           if (!values[key]  && key !== 'endDate') {
             errors[key]=`El campo ${key} es requerido`

@@ -25,7 +25,7 @@ class PortfolioDetails extends React.Component{
         return{userData}
     }
     render(){
-        // debugger;
+        //   ;
         // console.log(this.props)
         const {userData}=this.props;
         return(            

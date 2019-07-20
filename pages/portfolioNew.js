@@ -39,7 +39,7 @@ class PortfolioNew extends React.Component{
             
         })
         .catch((err)=>{
-            // debugger;
+            //   ;
             setSubmitting(true);
             const error=err||'server Error!';
             this.setState({error})

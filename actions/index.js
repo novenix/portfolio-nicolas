@@ -21,7 +21,7 @@ const setAuthHeader=(req)=>{
     
 }
 const rejectPromise=(resError)=>{
-    //debugger
+    //  
     let error = {};
     if(resError && resError.response && resError.response.data){
         error=resError.response.data.message;

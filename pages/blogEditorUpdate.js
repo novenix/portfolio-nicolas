@@ -10,7 +10,7 @@ class BlogEditorUpdate extends React.Component{
     static async getInitialProps({query}){
         const blogId=query.id;
         let blog={}
-        console.log(blogId)
+        
         try{
             blog=await getBlogById(blogId)
             
@@ -61,7 +61,7 @@ class BlogEditorUpdate extends React.Component{
     }
     render(){
         const {blog}=this.props;
-        console.log(blog)
+        
         const {isSaving}=this.state;
         return (            
             <BaseLayout {...this.props.auth} >

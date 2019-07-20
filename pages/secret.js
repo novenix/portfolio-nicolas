@@ -11,7 +11,7 @@ class Secret extends React.Component{
 //    esta estaba static async
      static async getInitialProps({req}){
         const anotherSecretData=  await getSecretData(req)
-        console.log(anotherSecretData)
+        
         return{anotherSecretData}
     }
     state={
@@ -21,7 +21,7 @@ class Secret extends React.Component{
     async componentDidMount(){
         const secretData=await getSecretData();
         
-       debugger;
+       //  ;
         this.setState({
             secretData
         });
@@ -44,10 +44,10 @@ class Secret extends React.Component{
         }
     }
     render(){
-        // debugger;
+        //   ;
         const {superSecretValue}=this.props;
         
-        console.log(this.state)
+        
         return(   
             
             <BaseLayout {...this.props.auth} >
