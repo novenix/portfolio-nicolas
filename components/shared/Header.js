@@ -141,7 +141,8 @@ export default class Header extends React.Component {
     const menuOpenClass=isOpen?'menu-open':'menu-close'
     return (
       <div>
-        <Navbar className={`port-navbar port-nav-base ${className} ${menuOpenClass}`} color='transparent' dark expand="md">
+          <Navbar className={`port-navbar port-nav-base absolute ${className} ${menuOpenClass}`} color="transparent" dark expand="md">
+        {/* <Navbar className={`port-navbar port-nav-base  ${className} ${menuOpenClass}`} color='transparent' dark expand="md"> */}
           <NavbarBrand className="port-navbar-brand" href="/">Nicolas Torres Páez</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

@@ -25,6 +25,7 @@ const BaseLayout =(props)=>{
                 <meta property='og:description' content='Mi Nombre es Nicolás Torres. 
                 Soy estudiante De Ingenieria De Software.Desde que empecé mi carrera he tenido mucha curiosidad por la programación web.
                 y '></meta>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans|Reenie+Beanie|Titillium+Web:400,700&display=swap" rel="stylesheet"/>
                 {cannonical && <link rel='cannonical' href={`${process.env.BASE_URL}/${cannonical}`} />}
                 {/* <link rel="icon" type="image/ico" href="/static/favicon.ico"/> */}
