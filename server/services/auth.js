@@ -2,6 +2,8 @@ const jwt = require('express-jwt');
 // verifica los tokens
 const jwksRsa = require('jwks-rsa');
 
+const config=require('../config');
+const NAMESPACE=config.NAMESPACE;
 
 // MIDDLEWARE
 exports.checkJWT=jwt(
@@ -20,7 +22,7 @@ exports.checkJWT=jwt(
 // MIDDLEWARE
 exports.checkRole=role=> (req,res,next)=>{
         const user=req.user;
-        if(user&& (user[process.env.NAMESPACE+'/role']===role)){
+        if(user&& user[NAMESPACE+'/role'] &&(user[NAMESPACE+'/role']===role)){
             next();
         }
         else{
