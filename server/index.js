@@ -1,5 +1,6 @@
 // para poder tener urls limpias con next.js, cstom server cambian los scripts del package
 const express = require("express");
+const compression=require('compression')
 const next = require("next");
 // mongoose
 const mongoose = require("mongoose");
@@ -51,6 +52,7 @@ app
   .prepare()
   .then(() => {
     const server = express();
+    server.use(compression());
     // midlleware body-parser;
     server.use(bodyParser.json());
     // uso de la ruta de books sin validacion
