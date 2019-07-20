@@ -1,4 +1,3 @@
-@import './shared/fonts';
 // pages
 @import './index';
 // components
@@ -12,15 +11,11 @@
 @import './slate-editor';
 @import './cv';
 @import './about';
-.titilliumWeb-loaded{
-    html,body{
-      font-family: 'TitilliumWeb'  !important;
-    }
-}
+
 html,body{
     height:100%;
     width:100%;
-    font-family: 'Helvetica';
+    font-family: 'TitilliumWeb' ,'Helvetica';
 }
 .self-typed{
     font-size: 31px;
