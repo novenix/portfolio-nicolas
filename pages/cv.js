@@ -12,9 +12,9 @@ class Cv extends React.Component{
                             <div className='cv-title' >
                             <h2>contacto:</h2>
                                 <p>Si desean contactarme, favor hacerlo por medios como Linkedin, o Computrabajo</p>
-                                <p>(allí esta mi Numero de Celular)</p>
-                                <p>https://www.linkedin.com/in/nicolastorrespaez/</p>
                                 <p>contnikotorr@hotmail.com</p>
+                                <p>https://www.linkedin.com/in/nicolastorrespaez/</p>
+                                
                                 <a download='cv_nicolas.pdf'
                                     className='btn btn-success'
                                     href='/static/cv_nicolas.pdf'
