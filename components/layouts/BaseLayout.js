@@ -23,6 +23,7 @@ const BaseLayout =(props)=>{
                 <meta property='og:locale' content='es-CO'></meta>
                 <meta property='og:url' content={`${process.env.BASE_URL}`}></meta>
                 <meta property='og:type' content='website'></meta>
+                <meta property="og:image" content="https://github.com/novenix/portfolio-nicolas/blob/master/static/images/section-1.jpg" />
                 <meta property='og:description' content='Mi Nombre es Nicolás Torres. 
                 Soy estudiante De Ingenieria De Software.Desde que empecé mi carrera he tenido mucha curiosidad por la programación web.
                 y '></meta>
