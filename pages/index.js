@@ -55,9 +55,8 @@ class Index extends  React.Component{
                       <div className="front">
                           <div className="hero-section-content">
                             <h2> Full Stack Web Developer </h2>
-                            <div className="hero-section-content-intro">
-                              También app developer
-                            </div>
+                            {/* <p>{' '}</p> */}
+                            
                           </div>
                           <img alt='Programming Guy' className="image" src="/static/images/section-1.jpg"/>
                           <div className="shadow-custom">
@@ -66,9 +65,9 @@ class Index extends  React.Component{
                         </div>
                         <div className="back ">
                           <div className="hero-section-content">
-                            <h2> Organizador De Proyectos </h2>
+                            <h2> También app developer </h2>
                             <div className="hero-section-content-intro">
-                               en desarrollo web
+                              Junior Programming
                             </div>
                           </div>
                           <img alt='Programming Guy' className="image" src="/static/images/section-2.jpg"/>
