@@ -18,7 +18,7 @@ const BaseLayout =(props)=>{
                 <title>{title}</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <meta name="description" content ='Mi Nombre es Nicolás Torres.Soy estudiante de la Escuela Colombiana De Ingenieria Julio Garavito.Desde que empecé mi carrera he tenido mucha curiosidad por la programación web en general y desde que aprendí todo lo necesario de next.js (react.js) y Node.js junto con MongoDB he podido realizar pequeños proyectos para servicios web con api rest.' ></meta>
-                <meta name='keywords' content='nicolas torres, nicolas torres paez ,nicolas torres desarrollador web, desarrollador web Nicolas Torres,nicolas torres desarrollador web node,nicolas torres desarrollador web react,nicolas torres desarrollador mongodb nodejs y react, desarrollador react,desarrollador react.js,desarrollador node,desarrollador next.js,desarrollador next ' ></meta>
+                <meta name='keywords' content='nicolas torres,nicolas torres paez ,nicolas torres desarrollador web, desarrollador web Nicolas Torres,nicolas torres desarrollador web node,nicolas torres desarrollador web react,nicolas torres desarrollador mongodb nodejs y react, desarrollador react,desarrollador react.js,desarrollador node,desarrollador next.js,desarrollador next ' ></meta>
                 <meta property='og:title' conten='Nicolas Torres Desarrollador Web'></meta>
                 <meta property='og:locale' content='es-CO'></meta>
                 <meta property='og:url' content={`${process.env.BASE_URL}`}></meta>
