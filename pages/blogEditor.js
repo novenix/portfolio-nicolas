@@ -39,7 +39,8 @@ class BlogEditor extends React.Component{
             
             this.setState({isSaving:false})
             
-            const message = err.message || 'Server Error!';
+            // const message = err.message || 'Server Error!';
+            const message = err && err.message || 'Server Error!';
             toast.error("Error inesperado. Copia tu progreso y refresca la pagina Por Favor", {
                 position: toast.POSITION.TOP_LEFT
               });

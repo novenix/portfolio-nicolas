@@ -9,7 +9,7 @@ const blogSchema=new Schema({
     //unique: si hay otro atributo existente en db no lo guarda, 
     //sparce: si no viene atributo el atributo unico viene null, pero sparce permite guardar
     //          varios null sin problema
-    slug:{type:String,unique:true,sparce:true},
+    slug:{type:String,unique:true,sparse:true},
     title:{type:String,required:true,maxlength:96},
     subTitle:{type:String,required:true},
     story:{type:String,required:true},
