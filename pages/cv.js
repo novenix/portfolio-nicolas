@@ -17,7 +17,7 @@ class Cv extends React.Component{
                                 
                                 <a download='cv_nicolas.pdf'
                                     className='btn btn-success'
-                                    href='/static/cv_nicolas.pdf'
+                                    href=''
                                 >
                                     Descargar
                                 </a>
